@@ -15,6 +15,42 @@ The class is extracted from OpenJDK (`sun.security.provider.certpath.ssl.SSLServ
 ${JAVA_HOME}/bin/keytool -printcert -sslserver example.com
 ```
 
+
+## Installation
+
+The provider can be installed in two different ways
+
+1. programmatic installation
+1. static installation
+
+### Programmatic Installation
+
+The provider can be installed programmatically using
+
+```java
+Security.addProvider(new SSLServerProvider());
+```
+
+### Static Installation
+
+The provider can be installed statically in the `java.security` file by adding the provider at the end
+
+```
+security.provider.N=SSLServer
+```
+
+`N` should be the value of the last provider incremented by 1. For OpenJDK 17 on Linux `N` should likely be 13.
+
+This can be done
+ * [per JVM installation](https://docs.oracle.com/en/java/javase/17/security/howtoimplaprovider.html#GUID-831AA25F-F702-442D-A2E4-8DA6DEA16F33)
+ * [per JVM Instance](https://docs.oracle.com/en/java/javase/17/security/java-authentication-and-authorization-service-jaas-reference-guide.html#GUID-106F4B32-B9A3-4B75-BDBF-29B252BB3F53).
+   * by appending to the `java.security` file using `-Djava.security.properties=/path/to/custom.java.security`
+   * by replacing to the `java.security` file using `-Djava.security.properties==/path/to/custom.java.security`
+   
+The provider uses the ServiceLoader mechanism therefore using the `SSLServer` string is enough, there is no need to use the fully qualified class name.
+
+Note that for this to work the provider JAR needs to be in the class path or module path.
+
 Java Requirements
 -----------------
 
