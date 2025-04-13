@@ -1,1 +1,1 @@
-security.provider.13=directory
+security.provider.13=SSLServer
