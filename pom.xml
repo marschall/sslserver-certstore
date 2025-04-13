@@ -42,6 +42,14 @@
   </scm>
 
   <build>
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <includes>
+          <include>LICENSE</include>
+        </includes>
+      </resource>
+    </resources>
     <plugins>
         <plugin>
          <artifactId>maven-compiler-plugin</artifactId>
@@ -90,9 +98,9 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
           <links>
-            <link>https://docs.oracle.com/en/java/javase/11/docs/api/</link>
+            <link>https://docs.oracle.com/en/java/javase/17/docs/api/</link>
           </links>
-          <source>11</source>
+          <source>17</source>
           <notimestamp>true</notimestamp>
         </configuration>
         <executions>

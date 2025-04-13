@@ -60,13 +60,24 @@ public final class SSLServerCertStore extends CertStoreSpi {
 
         socketFactory = tempFactory;
     }
-
-    SSLServerCertStore(CertStoreParameters params) throws InvalidAlgorithmParameterException {
-        super(params);
-        try {
-            this.uri = ((URICertStoreParameters) params).getURI();
-        } catch (ClassCastException e) {
-            throw new InvalidAlgorithmParameterException(e);
+    /**
+     * Creates a {@link SSLServerCertStore} with the specified parameters.
+     * For this class, the parameters object must be an instance of
+     * {@code CertStoreParameters}. If the {@code URI} returned by
+     * {@code URICertStoreParameters} does not use the HTTPS scheme then
+     * {@link #engineGetCertificates(CertSelector)} will return an
+     * empty {@code Collection}.
+     *
+     * @param parameters the algorithm parameters
+     * @throws InvalidAlgorithmParameterException if params is not an
+     *   instance of {@code URICertStoreParameters}
+     */
+    public SSLServerCertStore(CertStoreParameters parameters) throws InvalidAlgorithmParameterException {
+        super(parameters);
+        if (parameters instanceof URICertStoreParameters uriParameters) {
+            this.uri = uriParameters.getURI();
+        } else {
+            throw new InvalidAlgorithmParameterException("parameters must be URICertStoreParameters");
         }
     }
 

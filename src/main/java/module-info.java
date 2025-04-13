@@ -1,3 +1,9 @@
+
+/**
+ * Module for the {@code "SSLServer"} security provider.
+ * 
+ * @provides java.security.Provider
+ */
 module com.github.marschall.directorykeystore {
 
   exports com.github.marschall.sslservercertstore;
