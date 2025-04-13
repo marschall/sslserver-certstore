@@ -3,6 +3,15 @@ SSLServer CertStore
 
 A CertStore that downloads the certificates from a TLS handshake.
 
+
+```xml
+<dependency>
+    <groupId>com.github.marschall</groupId>
+    <artifactId>sslserver-certstore</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 ```java
 CertStore certStore = CertStore.getInstance("SSLServer", new URICertStoreParameters(new URI("https://example.com")));
 CertSelector allCertificates = null;

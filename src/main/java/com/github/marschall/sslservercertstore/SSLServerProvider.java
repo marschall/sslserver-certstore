@@ -22,7 +22,7 @@ public final class SSLServerProvider extends Provider {
      * by JCA.
      */
     public SSLServerProvider() {
-      super(NAME, "1.0.0", "SSLServer (CertStore)");
+      super(NAME, "1.0.1", "SSLServer (CertStore)");
       this.put("CertStore." + TYPE, SSLServerCertStore.class.getName());
     }
 
