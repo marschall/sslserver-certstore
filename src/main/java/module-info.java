@@ -4,7 +4,7 @@
  * 
  * @provides java.security.Provider
  */
-module com.github.marschall.directorykeystore {
+module com.github.marschall.sslservercertstore {
 
   exports com.github.marschall.sslservercertstore;
 

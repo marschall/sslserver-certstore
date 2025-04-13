@@ -5,16 +5,15 @@ A CertStore that downloads the certificates from a TLS handshake.
 
 ```java
 CertStore certStore = CertStore.getInstance("SSLServer", new URICertStoreParameters(new URI("https://example.com")));
-Collection<? extends Certificate> certificates = certStore.getCertificates(null);
+CertSelector allCertificates = null;
+Collection<? extends Certificate> certificates = certStore.getCertificates(allCertificates);
 ```
 
-[keytool -printcert](https://docs.oracle.com/en/java/javase/21/docs/specs/man/keytool.html#commands-for-displaying-data)
+The class is extracted from OpenJDK (`sun.security.provider.certpath.ssl.SSLServerCertStore`). The OpenJDK code is used by [keytool -printcert](https://docs.oracle.com/en/java/javase/21/docs/specs/man/keytool.html#commands-for-displaying-data) when you invoke the following command
 
 ```
 ${JAVA_HOME}/bin/keytool -printcert -sslserver example.com
 ```
-
-The class is extracted from OpenJDK (`sun.security.provider.certpath.ssl.SSLServerCertStore`).
 
 Java Requirements
 -----------------
